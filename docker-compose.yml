@@ -1,0 +1,35 @@
+version: '3.9'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: garden-guerilla-backend
+    environment:
+      - METNO_USER_AGENT=${METNO_USER_AGENT:-GardenGuerillaReady/1.0 contact@example.com}
+    ports:
+      - "8080:8080"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8080/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - guerilla-net
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: garden-guerilla-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - guerilla-net
+
+networks:
+  guerilla-net:
+    driver: bridge
