@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 body {
-  background-color: #052e16;
-  color: #dcfce7;
+  background-color: #0a0f1e;
+  color: #e2e8f0;
   font-family: 'JetBrains Mono', 'Fira Code', monospace;
 }
 

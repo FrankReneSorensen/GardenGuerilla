@@ -28,8 +28,8 @@ export default function LocationSelector({ selected, onSelect }: Props) {
           onClick={() => onSelect(loc)}
           className={`px-4 py-2 rounded-full text-sm font-semibold border transition-all duration-200
             ${selected.name === loc.name
-              ? 'bg-guerilla-500 border-guerilla-400 text-white shadow-lg mission-glow'
-              : 'bg-guerilla-950 border-guerilla-700 text-guerilla-300 hover:border-guerilla-500 hover:text-guerilla-100'
+              ? 'bg-guerilla-600 border-guerilla-400 text-white shadow-lg mission-glow'
+              : 'bg-slate-900 border-slate-700 text-slate-400 hover:border-slate-500 hover:text-slate-200'
             }`}
         >
           {loc.emoji} {loc.name}

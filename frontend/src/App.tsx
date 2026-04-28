@@ -45,24 +45,24 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-guerilla-950 px-4 py-8">
+    <div className="min-h-screen bg-slate-950 px-4 py-8">
       <div className="max-w-2xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
           <button
             onClick={() => setShowMissionControl(false)}
-            className="text-guerilla-600 hover:text-guerilla-400 text-xs font-mono uppercase tracking-widest mb-4 block mx-auto transition-colors"
+            className="text-slate-500 hover:text-slate-300 text-xs font-mono uppercase tracking-widest mb-4 block mx-auto transition-colors"
             aria-label="Tilbake til forsiden"
           >
             ← Forside
           </button>
           <div className="flex items-center justify-center gap-2 mb-2">
             <span className="text-3xl">🌱</span>
-            <h1 className="text-3xl font-bold text-guerilla-300 tracking-tight">
+            <h1 className="text-3xl font-bold text-white tracking-tight">
               Garden Guerilla
             </h1>
           </div>
-          <p className="text-sm text-guerilla-600 tracking-widest uppercase">Mission Control</p>
+          <p className="text-sm text-slate-500 tracking-widest uppercase">Mission Control</p>
         </div>
 
         {/* Location selector */}
@@ -71,8 +71,8 @@ export default function App() {
         {/* Loading */}
         {loading && (
           <div className="flex flex-col items-center justify-center py-16 gap-3">
-            <div className="w-8 h-8 border-2 border-guerilla-500 border-t-transparent rounded-full animate-spin"></div>
-            <p className="text-sm text-guerilla-500">Henter værdata fra MET...</p>
+            <div className="w-8 h-8 border-2 border-emerald-500 border-t-transparent rounded-full animate-spin"></div>
+            <p className="text-sm text-slate-500">Henter værdata fra MET...</p>
           </div>
         )}
 
@@ -82,7 +82,7 @@ export default function App() {
             <p className="text-red-400 text-sm">⚠️ {error}</p>
             <button
               onClick={() => load(location)}
-              className="mt-3 px-4 py-2 bg-guerilla-800 text-guerilla-300 rounded-full text-sm hover:bg-guerilla-700"
+              className="mt-3 px-4 py-2 bg-slate-800 text-slate-300 rounded-full text-sm hover:bg-slate-700"
             >
               Prøv igjen
             </button>
