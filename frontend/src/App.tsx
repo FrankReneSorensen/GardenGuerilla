@@ -4,8 +4,10 @@ import LocationSelector, { LOCATIONS, Location } from './components/LocationSele
 import ReadinessCard from './components/ReadinessCard';
 import ForecastDetails from './components/ForecastDetails';
 import GardeningTips from './components/GardeningTips';
+import HeroPage from './components/HeroPage';
 
 export default function App() {
+  const [showMissionControl, setShowMissionControl] = useState(false);
   const [location, setLocation] = useState<Location>(LOCATIONS[0]);
   const [data, setData] = useState<GardeningResponse | null>(null);
   const [loading, setLoading] = useState(false);
@@ -25,14 +27,35 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    load(location);
-  }, [location, load]);
+    if (showMissionControl) {
+      load(location);
+    }
+  }, [location, load, showMissionControl]);
+
+  const handleEnterMission = useCallback(
+    (loc?: Location) => {
+      if (loc) setLocation(loc);
+      setShowMissionControl(true);
+    },
+    [],
+  );
+
+  if (!showMissionControl) {
+    return <HeroPage onEnterMission={handleEnterMission} />;
+  }
 
   return (
     <div className="min-h-screen bg-guerilla-950 px-4 py-8">
       <div className="max-w-2xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
+          <button
+            onClick={() => setShowMissionControl(false)}
+            className="text-guerilla-600 hover:text-guerilla-400 text-xs font-mono uppercase tracking-widest mb-4 block mx-auto transition-colors"
+            aria-label="Tilbake til forsiden"
+          >
+            ← Forside
+          </button>
           <div className="flex items-center justify-center gap-2 mb-2">
             <span className="text-3xl">🌱</span>
             <h1 className="text-3xl font-bold text-guerilla-300 tracking-tight">
