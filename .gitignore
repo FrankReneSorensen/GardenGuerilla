@@ -19,7 +19,23 @@ Thumbs.db
 
 # Environment files
 .env
-.env.local
+.env.*
+*.env
+!*.env.example
+
+# Azure CLI and configuration
+.azure/
+azure.yaml
+azd-env/
+*.bicepparam
+*.tfvars
+*.tfstate
+*.tfstate.backup
+.terraform/
+
+# Kubernetes / Helm secrets
+*-secret.yaml
+*-secrets.yaml
 
 # Logs
 *.log

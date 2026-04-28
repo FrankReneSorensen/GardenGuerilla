@@ -19,7 +19,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "${cors.allowed-origins}")
 public class WeatherController {
     private static final Logger log = LoggerFactory.getLogger(WeatherController.class);
 
