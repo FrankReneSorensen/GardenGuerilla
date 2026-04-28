@@ -150,6 +150,19 @@ Unit-tester for score-algoritmen ligger i `GardeningReadinessServiceTest`.
 - **Caching**: 30 minutter Caffeine-cache på MET-kall
 - **Ingen eksponering**: API-feil fra MET eksponeres ikke til frontend
 - **Audit-logging**: Score-vurderinger logges uten persondata
+- **CORS**: Tillatte opphav styres via `CORS_ALLOWED_ORIGINS` – aldri hardkodet `*` i produksjon
+
+### Miljøvariabler og hemmeligheter
+
+Ingen hemmeligheter eller infrastrukturdetaljer er hardkodet i kildekoden. Alle sensitive verdier settes som miljøvariabler:
+
+| Variabel | Beskrivelse | Standard (kun lokal utvikling) |
+|---|---|---|
+| `METNO_USER_AGENT` | User-Agent for MET API | `GardenGuerillaReady/1.0 contact@example.com` |
+| `CORS_ALLOWED_ORIGINS` | Tillatte frontend-opphav | `http://localhost,http://localhost:5173` |
+
+> **Merk**: Ikke legg faktiske verdier for disse variablene i `.env`-filer som commites til repoet.  
+> Bruk Azure Container Apps secrets / GitHub Actions secrets for produksjonsverdier.
 
 ---
 
@@ -201,7 +214,12 @@ For å deploye til Azure:
    az containerapp create --name garden-guerilla-frontend --resource-group <rg> ...
    ```
 
-3. Sett `METNO_USER_AGENT` som Container App secret/environment variable.
+3. Sett følgende som Container App secrets/environment variables – **aldri i kildekoden**:
+   - `METNO_USER_AGENT` – din kontaktepost
+   - `CORS_ALLOWED_ORIGINS` – din faktiske frontend-URL (f.eks. `https://min-app.azurecontainerapps.io`)
+
+> Bruk **Azure Container Apps secrets** eller **GitHub Actions secrets** for disse verdiene.  
+> Ikke commit faktiske verdier til repoet.
 
 Se [Azure Container Apps docs](https://learn.microsoft.com/en-us/azure/container-apps/) for full guide.
 

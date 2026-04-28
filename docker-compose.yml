@@ -6,6 +6,7 @@ services:
     container_name: garden-guerilla-backend
     environment:
       - METNO_USER_AGENT=${METNO_USER_AGENT:-GardenGuerillaReady/1.0 contact@example.com}
+      - CORS_ALLOWED_ORIGINS=${CORS_ALLOWED_ORIGINS:-http://localhost}
     ports:
       - "8080:8080"
     healthcheck:
